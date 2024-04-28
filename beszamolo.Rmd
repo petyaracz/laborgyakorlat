@@ -1,0 +1,155 @@
+---
+title: "Beszámoló"
+author: "Rácz, Péter"
+date: "2024-04-25"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+
+library(tidyverse) # mindenhez
+library(knitr) # tablazatokhoz
+
+# a leirasokhoz a hosszu adatok kellenek.
+d_long = read_tsv('d_long.tsv')
+# az osszehasonlitasokhoz a szeles adatok kellenek.
+d_wide = read_tsv('d_wide.tsv')
+```
+
+## Alapkérdés
+
+Arra voltam kíváncsi, hogy az élelemszerzés típusa meghatározza-e azt, hogy létezik-e pénz meg gazdaság egy adott gyűjtögető közösségben.
+
+A kérdést a Binford Hunter-Gatherer adatbázisban vizsgáltam meg. Csak az Ausztráliai közösségeket néztem meg, mert csak.
+
+## Vizsgált változók
+
+Az élelmiszerszerzés típusát három változón keresztül vizsgáltam. Ezek:
+
+```{r xval1}
+# kihuzogatom azokat a sorokat, amik leirjak ezeket a tulajdonsagokat. mindegyiket egyszer.
+d_long %>% 
+  filter(str_detect(title, 'Subsistence')) %>% 
+  distinct(var_id,category,title,definition) %>% 
+  kable()
+```
+
+Mind a három számváltozó, azt mondják meg, hogy nulla és száz között mennyire fontos egy adott csoportnak az adott élelemforrás. Erről csinálok három histogrammot.
+
+```{r xval2, fig.width=4,fig.height=4}
+# csinalok egy-egy histogramot mindegyik tulajdonsagra
+d_long %>% 
+  filter(str_detect(title, 'Subsistence')) %>% 
+  ggplot(aes(code)) +
+  geom_histogram(bins = 30) +
+  theme_bw() +
+  facet_wrap( ~ title, nrow = 3)
+```
+
+Hogyan függenek össze? Ahhoz, hogy erre a kérdésre válaszoljak, a három számoszlopot egymás mellé teszem (eddig egymás alatt voltak).
+
+```{r xval3, fig.width=2.3,fig.height=2.3}
+
+d_wide %>% 
+  ggplot(aes(`Subsistence economy: Gathering`,`Subsistence economy: Fishing`)) +
+  geom_point() +
+  theme_bw() +
+  geom_smooth(method = 'lm', formula = 'y ~ x') +
+  xlab('Gathering') +
+  ylab('Fishing')
+
+d_wide %>% 
+  ggplot(aes(`Subsistence economy: Fishing`,`Subsistence economy: Hunting`)) +
+  geom_point() +
+  theme_bw() +
+  geom_smooth(method = 'lm', formula = 'y ~ x') +
+  xlab('Fishing') +
+  ylab('Hunting')
+
+d_wide %>% 
+  ggplot(aes(`Subsistence economy: Gathering`,`Subsistence economy: Hunting`)) +
+  geom_point() +
+  theme_bw() +
+  geom_smooth(method = 'lm', formula = 'y ~ x') +
+  xlab('Gathering') +
+  ylab('Hunting')
+
+```
+
+Az első ábrán azt látjuk, hogy a halászat és a gyűjtögetés nagyon összefügg. Ha egy közösség sokat halászik, akkor keveset gyűjtöget, és fordítva. Ehhez képest a második ábrán azt látjuk, hogy a vadászat és a halászat viszonya már jóval zajosabb. A harmadik ábrán pedig azt, hogy ha egy közösség sokat vadászik, akkor sokat is gyűjtöget, de ez a legkevésbé erős összefüggés.
+
+A gazdasági rendszer típusát két változón keresztül vizsgáltam. Ezek:
+
+```{r yval1}
+d_long %>% 
+  filter(str_detect(title, '(money|locations)')) %>%
+  distinct(var_id,category,title,definition) %>% 
+  kable()
+```
+
+Itt is megnézem, hogyan néznek ki ezek a változók.
+
+```{r yval2, fig.width=4,fig.height=3}
+# csinalok egy-egy histogramot mindegyik tulajdonsagra
+d_long %>% 
+  filter(str_detect(title, '(money|locations)')) %>% 
+  ggplot(aes(code)) +
+  geom_histogram() +
+  theme_bw() +
+  facet_wrap( ~ title, nrow = 3)
+```
+
+Oké, ezek elég egyértelműen nem számváltozók. Az elsőnek három külön értéke van. A másodiknak egy. Momentán egyetlen ausztrál közösség sem használ pénzt, szóval ez a változó nem nyert! Upsz.
+
+Jó akkor számoljuk meg, hogy az ownership milyen diszkrét értékeket vehet fel.
+
+```{r yval3}
+# szamoljuk meg, milyen ertek hanyszor van
+d_long %>% 
+  filter(str_detect(title, 'locations')) %>% # csak locations!
+  count(description,code) %>% 
+  arrange(code) %>% 
+  kable()
+```
+
+Oké kúl, három kód van, az első a leggyakoribb, ez több, mint az összes fele. Ez az, hogy nincs tulajdon és kész. A második, hogy általában vannak csoportos használati jogok, a harmadik, hogy ezek picit specifikusabban is jelen vannak. Úgy általában tulajdonról nem érdemes beszélni, de változik, hogy mennyire tekintenek valamit közös vagy egyéni használatúnak.
+
+## Változók közötti összefüggések
+
+Az derült ki, hogy van három, a táplálékszerzést mérő változóm, amik összefüggenek egymással, de nem teljesen, és maradt egy, a tulajdonjogot mérő változóm. Az előzőek számváltozók, az utóbbi kategóriaváltozó, tehát egy boxplottal jól össze lehet őket hasonlítani.
+
+```{r xy, fig.width=2.3,fig.height=2.3}
+# meg kell mondani, hogy az elso oszlop karaktervektor, hiaba szamokbol all, kulonben nem fog mukodni a boxplot
+d_wide %>% 
+  ggplot(aes(as.character(`Ownership of resource locations`),`Subsistence economy: Gathering`)) +
+  geom_boxplot() +
+  theme_bw() +
+  xlab('Ownership') +
+  ylab('Gathering')
+
+d_wide %>% 
+  ggplot(aes(as.character(`Ownership of resource locations`),`Subsistence economy: Hunting`)) +
+  geom_boxplot() +
+  theme_bw() +
+  xlab('Ownership') +
+  ylab('Hunting')
+
+d_wide %>% 
+  ggplot(aes(as.character(`Ownership of resource locations`),`Subsistence economy: Fishing`)) +
+  geom_boxplot() +
+  theme_bw() +
+  xlab('Ownership') +
+  ylab('Fishing')
+
+```
+
+Az első ábrán azt látjuk, hogy minél inkább jelen vannak a tulajdoni/használati viszonyok (x tengely), annál kevésbé jellemző a gyűjtögetés, mint fő élelemforrás. A második ábrán nem látunk összefüggést a tulajdonjog és a vadászat között. A harmadik ábrán azt látjuk, hogy minél komplexebbek a tulajdoni / használati jogok egy közösségben, annál jobban támaszkodik a közösség a halászatra, mint fő élelemforrásra.
+
+## Tanulság
+
+Azt a kérdést tettük föl az elején, hogy az élelemszerzés típusa meghatározza-e azt, hogy létezik-e pénz meg gazdaság egy adott gyűjtögető közösségben. Ezt a Binford Hunter-Gatherer adatbázis Ausztráliai közösségei között vizsgáltam meg.
+
+Azt találtam, hogy a fő élelmiszerforrás (gyűjtögetés vagy halászat) összefügg azzal, hogy mennyire komplex tulajdoni / használati viszonyok vannak jelen egy közösségben. Az ilyen szempontból egyszerűbb közösségek inkább gyűjtögetnek. Az összetettebbek inkább halásznak.
+
+A pénz jelenléte nem bizonyult jó mérőeszköznek, mert egyik, az adatbázisban szereplő Ausztrál közösség sem használ pénzt, mint csereeszközt.
