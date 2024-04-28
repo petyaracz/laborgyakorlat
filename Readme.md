@@ -8,6 +8,7 @@ Tartalom:
 - beszamolo.Rmd: beszámoló, Rmarkdownban
 - helper.py:  adatokat kombináló helper file, pythonban
 - beszamolo.ipynb: beszámoló, jupyter notebookban
+- d_long, d_wide: adatfájl, a helper fájlok kimenete, a beszamolo fájlok bemenete
 
 ## Krosszkulturális kutatások
 
