@@ -178,6 +178,6 @@ fontos kérdések:
 
 ## Példák
 
-ez. (^^)
-https://github.com/petyaracz/RaczPassmoreJordan2018
-https://github.com/petyaracz/Racz2023trance
+-ez. (^^)
+- https://github.com/petyaracz/RaczPassmoreJordan2018
+- https://github.com/petyaracz/Racz2023trance
