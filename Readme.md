@@ -2,6 +2,8 @@
 
 Ez a repo demonstrálja azt a fajta minimális megoldást, amit a laborgyakorlat órán az adatelemzős projektemre várok, R-ben és pythonban. Lent a feladat részletesebb leírását találjátok.
 
+__A megfejtést a labgyak határidejéig [ide](https://docs.google.com/forms/d/e/1FAIpQLSeuWb9V5Hj1VeuG_8V47HYaJI6WNuJ8BobjakvXmnvQo66CUA/viewform?usp=dialog) kell feltöltened.__
+
 Tartalom:
 
 - helper.R: adatokat kombináló helper file, R-ben
@@ -28,7 +30,7 @@ Tartalom:
 | milyen a kulturális szerkezet | mennyire vágják ki a fákat | 
 | kulturális szervezettség | női együttműködés formái |
 
-## Linkek
+## Linkek a példákhoz
 
 - [család](https://onlinelibrary.wiley.com/doi/full/10.1111/tops.12430),
 - [transz](https://www.tandfonline.com/doi/full/10.1080/2153599X.2023.2224447),
@@ -41,20 +43,28 @@ Tartalom:
 ## Labgyak
 
 1. Kitalálsz valami kérdést a fenti x-y formátumban
-2. Összeraksz egy adatbázist, amin vizsgálni tudod
-3. Csinálsz egy kis vizsgálódó adatelemzést (Exploratory Data Analysis, EDA), statisztika most nem köll
+2. Előregisztrálod a kutatást as [aspredicted.org](https://aspredicted.org/)-on, és megadsz engem társszerzőnek
+     Ha leokéztam, akkor:
+4. Összeraksz egy adatbázist, amin vizsgálni tudod a kérdésedet
+5. Csinálsz egy kis vizsgálódó adatelemzést (Exploratory Data Analysis, EDA), statisztika most nem köll
 
 ## Kitalálsz valami kérdést a fenti x-y formátumban
 
-Hipotézisek itt: https://hraf.yale.edu/ehc/hypotheses
-Kereshető adatok itt: https://d-place.org/
+Hipotézisek [itt](https://hraf.yale.edu/ehc/hypotheses)
+Kereshető adatok [itt](https://d-place.org/)
 
-## Összeraksz egy adatbázist, amin vizsgálni tudod
+## Előregisztrálod a kutatást
 
-Letölthető adatok itt: https://github.com/D-PLACE/dplace-data
-Standard Krosszkulturális Minta: https://github.com/D-PLACE/dplace-data/tree/master/datasets/SCCS
-Etnográfiai Atlasz: https://github.com/D-PLACE/dplace-data/tree/master/datasets/EA
-Klíma Adatbázis: https://github.com/D-PLACE/dplace-data/tree/master/datasets/ecoClimate
+Előregisztráció [itt](https://aspredicted.org/)
+A formátumot elsősorban kísérletes vizsgálatoknak találták ki, de a tiédhez hasonló kutatásokoz is lehet használni.
+Az előregisztrációban minél kevesebb dolgot kell megmondanod minél pontosabban. Az elemzés egyedisége és relevanciája nem számít, az viszont igen, hogy milyen adatokat elemzel hogyan.
+
+## Összeraksz egy adatbázist, amin vizsgálni tudod a kérdésedet
+
+Letölthető adatok [itt](https://github.com/D-PLACE/dplace-data)
+Standard Krosszkulturális Minta [itt](https://github.com/D-PLACE/dplace-data/tree/master/datasets/SCCS)
+Etnográfiai Atlasz [itt](https://github.com/D-PLACE/dplace-data/tree/master/datasets/EA)
+Klíma Adatbázis [itt](https://github.com/D-PLACE/dplace-data/tree/master/datasets/ecoClimate)
 
 ## Saját adatbázis összelegózása
 
@@ -128,12 +138,12 @@ societies.csv, elforgatva
 1. A data, variables, codes, societies táblázatokból kiszedegeted azokat az oszlopokat, amikre szükséged van. Összejoinolod őket. Figyelsz, hogy ugyanannak a dolognak lehet, hogy más a neve két különböző táblázatban, és akkor valahol át kell nevezni.
 2. Ezt minden olyan adatbázisra megcsinálod, amit használni akarsz.
 3. Ha több adatbázist akarsz használni, akkor ezeket is össze kell kombinálni egymással. Itt figyelned kell, hogy hogyan azonosítja a két adatbázis ugyanazokat a kultúrákat.
-4. Példa: Az ecoClimate adathalmaz SCCS azonosítókat használ. Az EA adathalmaz nem használ SCCS azonosítókat. De az EA és az SCCS is használ glottocode azonosítókat, és így össze lehet boronálni az ecoClimate-et az EA-val.
+4. Példa: Az ecoClimate adathalmaz SCCS azonosítókat használ. Az EA adathalmaz nem használ SCCS azonosítókat. De az EA és az SCCS is használ glottocode azonosítókat, és így össze lehet rakni az ecoClimate-et az EA-val.
 
 ## Ötletek: 
 
 1. Kitalálod, hogy mi x és y ("milyen változók mérik jól azt, hogy egy társadalom egyszerű vagy bonyolult?")
-2. Egyszerűsítsd le a kódokat. Ha skála, akkor kezeld számnak (ez amúgy csúnya dolog, de most mindegy). Ha multinomiális (sok diszkrét kategória), akkor ezeket kezeld külön. Vigyázz, hogy egy csomó adat hiányzik (lakosság mérete)
+2. Egyszerűsítsd le a kódokat. Ha skála, akkor kezeld rendezett kategóriaként (ordered category). Ha multinomiális (sok diszkrét kategória), akkor ezeket kezeld külön. Vigyázz, hogy bizonyos változóknál egy csomó adat hiányzik (lakosság mérete)
 3. Csinálj táblázatokat, hogy milyen gyakran van a is és b is az adatokban -- akkor ezek lehet, hogy összefüggenek!
 4. Csinálj sok-sok ábrát. Lelkeseknek: térkép!
 
@@ -144,6 +154,7 @@ societies.csv, elforgatva
   - összerakosgatja az adatokat egy adattáblába
   - esetleg meghatároz függvényeket, amiket használni akar
 - beszámoló fájl
+  - benne van az előregisztrációra mutató link!!!
   - végigvezeti az olvasót az elemzésen
   - bevezetés: mi a kérdés
   - mik az adatok, mik a változók, amiket vizsgálunk
@@ -157,6 +168,13 @@ fontos kérdések:
 2. hogyan néz ki a kimeneti változó 
 3. hogyan néznek ki a prediktorváltozók, milyen a viszonyuk egymáshoz
 4. milyen a prediktorváltozók viszonya a kimeneti változóhoz
+
+## Mi kell a teljesítéshez
+
+- előregisztráció, amit én leokéztam
+- helper fájl a GITHUBON
+- beszámolóhoz használt kód vagy a beszámoló Rmd-ben / munkafüzet formátumban (jupyter notebook etc) ugyanott a GITHUBON
+- beszámoló pdf-ben. 
 
 ## Példák
 
