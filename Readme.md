@@ -1,5 +1,17 @@
 ## Kognitív Tudományi Tanszék Laborgyakorlat
 
+**Fontos dátumok**
+
+1. március 7: labgyak választás
+2. március 28: előregisztráció első verzió határideje (ld lentebb)
+3. projekt leadás határideje (ld lentebb)
+
+**Jegyszerzéshez kell**
+
+- időben leadott előregisztráció, amire azt írtam, hogy okés
+- Github repository a felhasznált kódokkal és a végső adattáblával
+- Beszámoló __pdf__-ben, felhasznált irodalommal, legalább három ábrával, legalább két oldal.
+
 Ez a repo demonstrálja azt a fajta minimális megoldást, amit a laborgyakorlat órán az adatelemzős projektemre várok, R-ben és pythonban. Lent a feladat részletesebb leírását találjátok.
 
 __A megfejtést a labgyak határidejéig [ide](https://docs.google.com/forms/d/e/1FAIpQLSeuWb9V5Hj1VeuG_8V47HYaJI6WNuJ8BobjakvXmnvQo66CUA/viewform?usp=dialog) kell feltöltened.__
