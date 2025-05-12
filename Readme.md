@@ -4,7 +4,7 @@
 
 1. március 7: labgyak választás
 2. március 28: előregisztráció első verzió határideje (ld lentebb)
-3. projekt leadás határideje (ld lentebb)
+3. __június 2.__ projekt leadás határideje (ld lentebb)
 
 **Jegyszerzéshez kell**
 
