@@ -1,10 +1,10 @@
-## Kognitív Tudományi Tanszék Laborgyakorlat
+## Kognitív Tudományi Tanszék Laborgyakorlat 2025/6 II
 
 **Fontos dátumok**
 
-1. március 7: labgyak választás
+1. március 6: labgyak választás
 2. március 28: előregisztráció első verzió határideje (ld lentebb)
-3. __június 2.__ projekt leadás határideje (ld lentebb)
+3. __június 8.__ projekt leadás határideje (ld lentebb)
 
 **Jegyszerzéshez kell**
 
@@ -14,9 +14,9 @@
 
 Ez a repo demonstrálja azt a fajta minimális megoldást, amit a laborgyakorlat órán az adatelemzős projektemre várok, R-ben és pythonban. Lent a feladat részletesebb leírását találjátok.
 
-__A megfejtést a labgyak határidejéig [ide](https://docs.google.com/forms/d/e/1FAIpQLSeuWb9V5Hj1VeuG_8V47HYaJI6WNuJ8BobjakvXmnvQo66CUA/viewform?usp=dialog) kell feltöltened.__
+__A megfejtést a labgyak határidejéig [ide](https://forms.gle/qEzFnZbRuRt1D6aA6) kell feltöltened.__
 
-Tartalom:
+A repo tartalma:
 
 - helper.R: adatokat kombináló helper file, R-ben
 - beszamolo.Rmd: beszámoló, Rmarkdownban
@@ -52,13 +52,15 @@ Tartalom:
 - [fa](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0156340#sec009),
 - [nők](https://royalsocietypublishing.org/doi/full/10.1098/rstb.2021.0425#d1e924)
 
-## Labgyak
+## Labgyak feladat:
 
 1. Kitalálsz valami kérdést a fenti x-y formátumban
 2. Előregisztrálod a kutatást as [aspredicted.org](https://aspredicted.org/)-on, és megadsz engem társszerzőnek
      Ha leokéztam, akkor:
 4. Összeraksz egy adatbázist, amin vizsgálni tudod a kérdésedet
 5. Csinálsz egy kis vizsgálódó adatelemzést (Exploratory Data Analysis, EDA), statisztika most nem köll
+
+### Lépések:
 
 ## Kitalálsz valami kérdést a fenti x-y formátumban
 
@@ -155,7 +157,7 @@ societies.csv, elforgatva
 ## Ötletek: 
 
 1. Kitalálod, hogy mi x és y ("milyen változók mérik jól azt, hogy egy társadalom egyszerű vagy bonyolult?")
-2. Egyszerűsítsd le a kódokat. Ha skála, akkor kezeld rendezett kategóriaként (ordered category). Ha multinomiális (sok diszkrét kategória), akkor ezeket kezeld külön. Vigyázz, hogy bizonyos változóknál egy csomó adat hiányzik (lakosság mérete)
+2. Egyszerűsítsd le a kódokat. Ha skála, akkor kezeld rendezett kategóriaként (ordered category). Ha multinomiális (sok diszkrét kategória), akkor ezeket kezeld külön. Vigyázz, hogy bizonyos változóknál egy csomó adat hiányzik (pl. lakosság mérete)
 3. Csinálj táblázatokat, hogy milyen gyakran van a is és b is az adatokban -- akkor ezek lehet, hogy összefüggenek!
 4. Csinálj sok-sok ábrát. Lelkeseknek: térkép!
 
